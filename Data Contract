@@ -8,11 +8,7 @@ FEATURES = [
   "net_monthly_income",
   "rent_monthly",
   "utilities_monthly",
-  "countable_resources",
   "has_elderly_member",
   "has_disabled_member",
   "has_pregnant_member",
-  "receives_fitap",
-  "receives_kcsp",
-  "receives_step",
 ]
