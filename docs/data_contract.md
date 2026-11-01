@@ -1,0 +1,24 @@
+# Data contract
+
+FEATURES = [
+"household_size",
+"adults",
+"children",
+"gross_monthly_income",
+"earned_monthly_income",
+"unearned_monthly_income",
+"net_monthly_income",
+"rent_monthly",
+"utilities_monthly",
+"has_elderly_member",
+"has_disabled_member",
+"has_pregnant_member",
+]
+
+## Household input fields
+
+## Program list
+
+## Prediction output (program -> probability)
+
+## Missing/noisy fields
