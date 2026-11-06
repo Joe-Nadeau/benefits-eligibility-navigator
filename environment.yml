@@ -3,8 +3,6 @@ channels:
   - defaults
 dependencies:
   - python=3.10
-  - jupyter
-  - scikit-learn
-  - numpy
-  - matplotlib
-  - pandas
+  - pip
+  - pip:
+      - -r requirements.txt
