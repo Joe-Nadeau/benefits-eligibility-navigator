@@ -15,20 +15,11 @@ BOOLEAN_FEATURES = [
     "has_disabled_member",
 ]
 
-CATEGORICAL_FEATURES = [
-    "applicant_category",
-]
-
 
 def create_medicaid_preprocessor():
     return ColumnTransformer(
         transformers=[
             ("numeric", StandardScaler(), NUMERIC_FEATURES),
             ("boolean", "passthrough", BOOLEAN_FEATURES),
-            (
-                "categorical",
-                OneHotEncoder(handle_unknown="ignore"),
-                CATEGORICAL_FEATURES,
-            ),
         ]
     )

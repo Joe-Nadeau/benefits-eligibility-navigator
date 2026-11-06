@@ -13,12 +13,7 @@ BOOLEAN_FEATURES = [
     "receives_tanf",
     "receives_lachip",
     "receives_lamoms",
-    "nutritional_risk",
     "is_louisiana_resident",
-]
-
-CATEGORICAL_FEATURES = [
-    "applicant_category",
 ]
 
 
@@ -27,10 +22,5 @@ def create_wic_preprocessor():
         transformers=[
             ("numeric", StandardScaler(), NUMERIC_FEATURES),
             ("boolean", "passthrough", BOOLEAN_FEATURES),
-            (
-                "categorical",
-                OneHotEncoder(handle_unknown="ignore"),
-                CATEGORICAL_FEATURES,
-            ),
         ]
     )

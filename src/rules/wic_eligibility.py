@@ -31,13 +31,8 @@ def wic_eligibility(features):
 
     # Applicant must belong to a WIC category.
     category_eligible = (
-        features["has_pregnant_member"]
-        or features.get("applicant_category") in [
-            "infant",
-            "child",
-            "postpartum",
-            "breastfeeding"
-        ]
+        features.get("has_pregnant_member", False)
+        or features.get("has_child_under_5", False)
     )
 
     if not category_eligible:
@@ -50,12 +45,6 @@ def wic_eligibility(features):
         return {
             "eligible": False,
             "reason": "Gross income exceeds the WIC income limit."
-        }
-
-    if not features.get("nutritional_risk", False):
-        return {
-            "eligible": False,
-            "reason": "Nutritional risk requirement is not met."
         }
 
     if not features.get("is_louisiana_resident", True):

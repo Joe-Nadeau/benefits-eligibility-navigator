@@ -7,13 +7,26 @@ FEATURES = [
     # Example: 3
     "household_size",
 
-    # Total household gross monthly income before deductions.
+    # Total household gross monthly income before deductions (includes unearned and earned income).
     # Example: 3500.00
     "gross_monthly_income",
 
     # Total household net monthly income after applicable deductions.
+    # Will be derived from 
     # Example: 2800.00
-    "net_monthly_income",
+    # "net_monthly_income", 
+    
+    # Total household earned monthly income from active work or services performed.
+    # Example: 3000.00
+    "earned_monthly_income",
+
+    # Total rent paid monthly.
+    # Example: 200.00
+    "rent_monthly",
+
+    # Total utilies paid monthly.
+    # Example: 100.00
+    "utilities_monthly",
 
     # Whether any household member is age 60 or older.
     # Example: True
@@ -26,6 +39,10 @@ FEATURES = [
     # Whether any household member is currently pregnant.
     # Example: True
     "has_pregnant_member",
+
+    # Whether any household member is under 5.
+    # Example: True
+    "has_child_under_5",
 
     # Whether the household currently receives SNAP benefits.
     # Example: True
@@ -54,12 +71,6 @@ FEATURES = [
     # Example: 28
     "applicant_age",
 
-    # The applicant's WIC or Medicaid eligibility category.
-    # WIC examples: "infant", "child", "pregnant", "postpartum",
-    #               "breastfeeding"
-    # Medicaid examples: "adult", "child", "pregnant", "disabled"
-    "applicant_category",
-
     # Whether the applicant is currently enrolled in Medicare.
     # Example: False
     "has_medicare",
@@ -67,12 +78,6 @@ FEATURES = [
     # Whether the applicant currently has other health insurance.
     # Example: True
     "has_other_health_insurance",
-
-    # Whether the WIC applicant has been determined to have nutritional risk.
-    # This is assessed by WIC staff based on factors such as dietary,
-    # medical, or anthropometric conditions.
-    # Examples: True, False
-    "nutritional_risk",
 
     # Whether the applicant lives in Louisiana.
     # Example: True
