@@ -14,8 +14,8 @@ WIC_FEATURES = [
     "receives_tanf",
     "receives_lachip",
     "receives_lamoms",
-    "applicant_category",
-    "nutritional_risk",
+    "has_pregnant_member",
+    "has_child_under_5",
     "is_louisiana_resident",
 ]
 
@@ -23,7 +23,6 @@ MEDICAID_FEATURES = [
     "household_size",
     "gross_monthly_income",
     "applicant_age",
-    "applicant_category",
     "has_medicare",
     "has_other_health_insurance",
     "has_pregnant_member",
