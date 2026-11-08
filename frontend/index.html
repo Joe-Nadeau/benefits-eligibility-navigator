@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Louisiana SNAP income screening demo</title>
+  <style>
+    body { font: 1rem/1.5 system-ui, sans-serif; color: #172d2a; background: #f3f7f5; }
+    main { max-width: 38rem; margin: 2rem auto; padding: 1.5rem; background: white; border-radius: 1rem; }
+    form { display: grid; gap: 1rem; }
+    label { display: block; }
+    input[type=number] { display: block; width: min(100%, 18rem); font: inherit; padding: .35rem; }
+    button { justify-self: start; font: inherit; padding: .65rem 1rem; background: #14584b; color: white; border: 0; border-radius: .4rem; cursor: pointer; }
+    #result { white-space: pre-line; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Louisiana SNAP income screening demo</h1>
+  <p>Try this classroom demo with sample household details. The estimate uses a simplified income screen. Louisiana makes the official eligibility decision.</p>
+  <form id="screening">
+    <label>People in your household
+      <input name="household_size" type="number" min="1" step="1" required>
+    </label>
+    <label>Total monthly household income before deductions ($)
+      <input name="gross_monthly_income" type="number" min="0" step=".01" required>
+    </label>
+    <label>Monthly income from work, included in the total above ($)
+      <input name="earned_monthly_income" type="number" min="0" step=".01" required>
+    </label>
+    <label>Monthly rent ($)
+      <input name="rent_monthly" type="number" min="0" step=".01" required>
+    </label>
+    <label><input name="has_elderly_member" type="checkbox"> Someone in the household is 60 or older</label>
+    <label><input name="has_disabled_member" type="checkbox"> Someone in the household has a qualifying disability</label>
+    <button>Check my estimate</button>
+  </form>
+  <p id="result" role="status"></p>
+  <p>This demo covers the regular income screen and uses rent for shelter costs. Other deductions and eligibility pathways may affect your case.</p>
+</main>
+<script>
+  const form = document.querySelector('#screening');
+  const result = document.querySelector('#result');
+  const button = form.querySelector('button');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (window.location.protocol === 'file:') {
+      result.textContent = 'Start the FastAPI server and open http://127.0.0.1:8000 to run the estimate.';
+      return;
+    }
+    const fields = new FormData(form);
+    const payload = Object.fromEntries(fields);
+    payload.household_size = Number(fields.get('household_size'));
+    payload.has_elderly_member = fields.has('has_elderly_member');
+    payload.has_disabled_member = fields.has('has_disabled_member');
+    result.textContent = 'Checking your estimate…';
+    button.disabled = true;
+
+    try {
+      const response = await fetch('/api/estimate/snap', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload),
+      });
+      if (!response.headers.get('content-type')?.includes('application/json')) {
+        result.textContent = 'This page could not reach the SNAP API. Open the form from the FastAPI server.';
+        return;
+      }
+      const data = await response.json();
+      if (!response.ok) {
+        result.textContent = typeof data.detail === 'string'
+          ? data.detail : 'Check your entries and try again.';
+        return;
+      }
+      const title = data.passes_income_screen ? 'Passes this income screen' : 'Falls outside this income screen';
+      result.textContent = [title, data.reason, 'Estimated monthly net income: $' + data.net_monthly_income].join('\n');
+    } catch {
+      result.textContent = 'The estimate service is unavailable. Try again in a moment.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
