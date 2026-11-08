@@ -32,13 +32,21 @@ MEDICAID_FEATURES = [
 
 def extract_features(data, feature_list):
     return {
-        feature: data[feature]
+        feature: data.get(feature)
         for feature in feature_list
     }
 
 
 def extract_snap_features(data):
-    return extract_features(data, SNAP_FEATURES)
+    snap_data = data.copy()
+
+    # Calculate SNAP-specific net income.
+    snap_data["net_monthly_income"] = calculate_snap_net_income(data)
+
+    return {
+        feature: snap_data.get(feature)
+        for feature in SNAP_FEATURES
+    }
 
 
 def extract_wic_features(data):
@@ -47,3 +55,17 @@ def extract_wic_features(data):
 
 def extract_medicaid_features(data):
     return extract_features(data, MEDICAID_FEATURES)
+
+def calculate_snap_net_income(data):
+    gross_income = data["gross_monthly_income"]
+    earned_income = data["earned_monthly_income"]
+
+    # Calculate applicable SNAP deductions here.
+    earned_deduction = earned_income * 0.20
+
+    # TODO: Add standard deduction, dependent care,
+    # child support, medical, and shelter deductions.
+
+    net_income = gross_income - earned_deduction
+
+    return max(0, net_income)
