@@ -1,0 +1,314 @@
+[
+  {
+    "id": "c01",
+    "text": "I need to see if my family qualifies for any other assistance. We live in Baton Rouge. There are four of us in our household including me, my husband and our two kids, ages 4 and 8. I make $1,875 a month. My husband isn't working right now. We pay $950 a month in rent and about $200 for utilities.",
+    "expected": {
+      "household_size": 4,
+      "earned_monthly_income": 1875,
+      "gross_monthly_income": 1875,
+      "rent_monthly": 950,
+      "utilities_monthly": 200,
+      "has_child_under_5": true,
+      "is_louisiana_resident": true
+    },
+    "tags": ["rich", "household_by_listing", "city_implies_state"]
+  },
+  {
+    "id": "c02",
+    "text": "I'm a single mom, I'm 24 and pregnant. My other kid is 2.",
+    "expected": {
+      "applicant_age": 24,
+      "has_pregnant_member": true,
+      "has_child_under_5": true,
+      "household_size": 2
+    },
+    "tags": ["sparse"]
+  },
+  {
+    "id": "c03",
+    "text": "I take home about 2 grand a month. My momma is 71 but she don't live with me. Nobody here is disabled.",
+    "expected": {
+      "has_elderly_member": false,
+      "has_disabled_member": false
+    },
+    "tags": ["trap_take_home", "trap_nonhousehold_member", "explicit_negation"]
+  },
+  {
+    "id": "c04",
+    "text": "I'm a 57 year old disabled Veteran. I get $1200 a month from the VA. Currently living in a shelter.",
+    "expected": {
+      "gross_monthly_income": 1200,
+      "applicant_age": 57,
+      "has_disabled_member": true
+    },
+    "tags": ["sparse", "unearned_income", "self_disabled"]
+  },
+  {
+    "id": "c05",
+    "text": "I'm a single mom with 2 kids (ages 2 and 6). I make about 28k a year. My rent is $850 a month and I pay around $250 a month in utilities. I receive SNAP benefits.",
+    "expected": {
+        "has_child_under_5": true,
+        "receives_snap": true,
+        "rent_monthly": 850,
+        "utilities_monthly": 250,
+        "household_size": 3,
+        "earned_monthly_income": 2333,
+        "gross_monthly_income": 2333
+    },
+    "tags": ["annual_income"]
+  },
+  {
+    "id": "c06",
+    "text": "I'm 23 and pregnant. I live in Bogalusa. I make $13.75/hr, 40hrs per week. No other kids. I rent a room in my parents house for $250/month.",
+    "expected": {
+        "applicant_age": 23,
+        "has_child_under_5": false,
+        "has_pregnant_member": true,
+        "is_louisiana_resident": true,
+        "rent_monthly": 250,
+        "earned_monthly_income": 2382,
+        "gross_monthly_income": 2382
+    },
+    "tags": ["hourly_income", "city_implies_state"]
+  },
+  {
+    "id": "c07",
+    "text": "My husband works full time and makes $25/hr. I work 20hrs/week and make $18/hr. We have 3 kids. No one else lives with us. One of our kids has a cochlear implant for hearing loss.",
+    "expected": {
+        "household_size": 5
+    },
+    "tags": ["sparse", "multiple_incomes", "implicit_disability"]
+  },
+  {
+    "id": "c08",
+    "text": "I'm a single mom. I'm not working right now, so I get about $800 a month in unemployment. I get about $900 a month in child support.",
+    "expected": {
+        "earned_monthly_income": 0,
+        "gross_monthly_income": 1700
+    },
+    "tags": ["unearned_income"]
+  },
+  {
+    "id": "c09",
+    "text": "I'm a 64 year old woman. I live alone with my 7 cats. I make $550 every two weeks. And receive social security. Am I eligible for any other benefits? I need to feed my babies.",
+    "expected": {
+        "applicant_age": 64,
+        "has_elderly_member": true,
+        "household_size": 1,
+        "earned_monthly_income": 1191,
+        "has_child_under_5": false
+    },
+    "tags": ["mixed_income", "pay_frequency", "pets_not_household"]
+  },
+  {
+    "id": "c10",
+    "text": "I am 35 y/o, no kids and make a little over sixteen hundred a month. I live with my elderly father. He's 75.",
+    "expected": {
+        "has_elderly_member": true,
+        "applicant_age": 35,
+        "household_size": 2,
+        "earned_monthly_income": 1600,
+        "gross_monthly_income": 1600,
+        "has_child_under_5": false
+    },
+    "tags": ["elderly_in_home", "informal_number", "explicit_negation"]
+  },
+  {
+    "id": "c11",
+    "text": "I just lost my job, so I don't have any money coming in right now. I'm 28 y/o and I live with my wife. We don't have any kids.",
+    "expected": {
+        "applicant_age": 28,
+        "household_size": 2,
+        "earned_monthly_income": 0,
+        "gross_monthly_income": 0,
+        "has_child_under_5": false
+    },
+    "tags": ["explicit_zero", "explicit_negation"]
+  },
+  {
+    "id": "c12",
+    "text": "It's me, my wife, our 3 year old child and my mother-in-law who is 67. I work part time and make 900 a month.",
+    "expected": {
+        "has_child_under_5": true,
+        "household_size": 4,
+        "has_elderly_member": true,
+        "earned_monthly_income": 900,
+        "gross_monthly_income": 900
+    },
+    "tags": ["household_by_listing", "elderly_in_home"]
+  },
+  {
+    "id": "c13",
+    "text": "House hold of 5. Receiving WIC and SNAP. One working parent.",
+    "expected": {
+        "household_size": 5,
+        "receives_snap": true
+    },
+    "tags": ["household_stated", "sparse", "program_not_in_schema"]
+  },
+  {
+    "id": "c14",
+    "text": "It's me, pregnant (35 y/o), my husband and my mother (65 y/o). My husband works full time, my mom is retired and I'm unemployed at the moment.",
+    "expected": {
+        "applicant_age": 35,
+        "has_elderly_member": true,
+        "household_size": 3,
+        "has_pregnant_member": true
+    },
+    "tags": ["sparse", "household_by_listing", "elderly_in_home"]
+  },
+  {
+    "id": "c15",
+    "text": "I am a 31 year old female. I'm pregnant and I live with my boyfriend who has a 6 year old son who lives with us on the weekends.",
+    "expected": {
+        "applicant_age": 31,
+        "has_pregnant_member": true
+    },
+    "tags": ["trap_nonhousehold_member", "sparse"]
+  },
+  {
+    "id": "c16",
+    "text": "I'm 45 and live with my two teenage kids and my ex-husband. I make $2000 a month and pay half of our mortgage, which is $2500 a month.",
+    "expected": {
+        "applicant_age": 45,
+        "earned_monthly_income": 2000,
+        "gross_monthly_income": 2000,
+        "has_child_under_5": false,
+        "rent_monthly": 1250
+    },
+    "tags": ["trap_nonhousehold_member", "sparse", "household_size_ambiguous", "mortgage"]
+  },
+  {
+    "id": "c17",
+    "text": "My husband and I have two kids ages 6 months and 5 years. We both work part time, because we can't afford child care.",
+    "expected": {
+        "has_child_under_5": true,
+        "household_size": 4
+    },
+    "tags": ["child_age_boundary", "sparse", "household_by_listing"]
+  },
+  {
+    "id": "c18",
+    "text": "I am a 65 year old retired widow. I live with my 90 year old mother who is also retired. We don't have a mortgage, but we pay about $400 a month in utilities. My mother is legally blind due to cataracts. We both receive social security and are on medicaid.",
+    "expected": {
+        "applicant_age": 65,
+        "has_elderly_member": true,
+        "household_size": 2,
+        "rent_monthly": 0,
+        "utilities_monthly": 400,
+        "has_disabled_member": true,
+        "receives_medicaid": true,
+        "has_child_under_5": false
+    },
+    "tags": ["rich", "elderly_in_home", "household_by_listing", "mortgage", "explicit_negation"]
+  },
+  {
+    "id": "c19",
+    "text": "60 y/o male. Unemployed. Disabled.",
+    "expected": {
+        "applicant_age": 60,
+        "has_elderly_member": true,
+        "has_disabled_member": true
+    },
+    "tags": ["sparse", "elderly_boundary"]
+  },
+  {
+    "id": "c20",
+    "text": "I am a 45 year old working mom. My adult daughter (20 y/o) lives with me. She is pregnant. I work full time and make about 45k a year. No one else lives with us. I pay $1800/month in rent and our utilities usually run about $300/month. Neither of us have any disabilities.",
+    "expected": {
+        "applicant_age": 45,
+        "has_pregnant_member": true,
+        "earned_monthly_income": 3750,
+        "gross_monthly_income": 3750,
+        "household_size": 2,
+        "rent_monthly": 1800,
+        "utilities_monthly": 300,
+        "has_disabled_member": false,
+        "has_child_under_5": false,
+        "has_elderly_member": false
+    },
+    "tags": ["rich", "pregnant_other_member"]
+  },
+  {
+    "id": "c21",
+    "text": "I'm a 59 year old man. I make about 65k a year. My wife can no longer work, since she had a stroke a few years back. Our adult son lives with us. He receives ssi for autism.",
+    "expected": {
+        "applicant_age": 59,
+        "earned_monthly_income": 5417,
+        "has_disabled_member": true
+    },
+    "tags": ["implicit_disability"]
+  },
+  {
+    "id": "c22",
+    "text": "I am 19 years old. I live on my own and I make about 2k a month. My rent is $1200 a month including utilities. I don't have any kids or a wife. Just me and my dog. I don't have any disabilities.",
+    "expected": {
+        "applicant_age": 19,
+        "earned_monthly_income": 2000,
+        "gross_monthly_income": 2000,
+        "rent_monthly": 1200,
+        "household_size": 1,
+        "has_disabled_member": false,
+        "has_child_under_5": false,
+        "has_elderly_member": false
+    },
+    "tags": ["explicit_negation", "household_by_listing", "rent_includes_utilities"]
+  },
+  {
+    "id": "c23",
+    "text": "I'm a 41 year old widower and father of 2. My kids are 5 and 8 years old. I currently make about $75k/year. My mortgage is $1800/month and my utilities usually run about $150/month for electirc, $50/month for water and $70/month for gas.",
+    "expected": {
+        "applicant_age": 41,
+        "utilities_monthly": 270,
+        "rent_monthly": 1800,
+        "earned_monthly_income": 6250,
+        "gross_monthly_income": 6250,
+        "has_child_under_5": false,
+        "has_elderly_member": false
+    },
+    "tags": ["utilities_sum", "child_age_boundary", "annual_income", "household_size_ambiguous"]
+  },
+  {
+    "id": "c24",
+    "text": "I am a single mom. 32 years old. Living in Jefferson Parish. I get food stamps. I got 3 kids, ages 1, 3, 5. I am unemployed right now and don't get child support. None of us have health insurance.",
+    "expected": {
+        "applicant_age": 32,
+        "has_child_under_5": true,
+        "receives_snap": true,
+        "is_louisiana_resident": true,
+        "household_size": 4,
+        "earned_monthly_income": 0,
+        "has_other_health_insurance": false
+    },
+    "tags": ["child_age_boundary", "parish", "explicit_negation"]
+  },
+  {
+    "id": "c25",
+    "text": "4 ppl not disabled 2 adults 3 kids 4and6 years we get fodstapms and wic",
+    "expected": {
+        "receives_snap": true,
+        "has_child_under_5": true,
+        "has_disabled_member": false
+    },
+    "tags": ["messy_text", "household_stated", "sparse", "program_not_in_schema", "contradiction"]
+  },
+  {
+    "id": "c26",
+    "text": "hi can you help me",
+    "expected": {
+
+    },
+    "tags": ["empty"]
+  },
+    {
+    "id": "c27",
+    "text": "Hi, I'm a 37 year old mom, with 3 kids. I live in Waskom. I get food stamps. What else do I qualify for?",
+    "expected": {
+        "applicant_age": 37,
+        "is_louisiana_resident": false,
+        "receives_snap": true
+    },
+    "tags": ["household_size_ambiguous", "sparse"]
+  }
+
+]
