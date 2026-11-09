@@ -1,7 +1,5 @@
 """Single source of truth for the household input fields."""
 
-# TODO (team meeting): decide whether net_monthly_income is a user-provided
-# input or a value derived by the rules module.
 FEATURES = [
     # Total number of people in the household.
     # Example: 3
@@ -14,7 +12,7 @@ FEATURES = [
     # Total household net monthly income after applicable deductions.
     # Will be derived from 
     # Example: 2800.00
-    # "net_monthly_income", 
+    "net_monthly_income", 
     
     # Total household earned monthly income from active work or services performed.
     # Example: 3000.00
