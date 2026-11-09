@@ -189,7 +189,7 @@
   },
   {
     "id": "c18",
-    "text": "I am a 65 year old retired widow. I live with my 90 year old mother who is also retired. We don't have a mortgage, but we pay about $400 a month in utilities. My mother is legally blind due to cataracts. We both receive social security and are on medicaid.",
+    "text": "I am a 65 year old retired widow. I live with my 90 year old mother who is also retired. We don't have a mortgage, but we pay about $400 a month in utilities. My mother is legally blind due to cataracts. We both receive social security and are on medicaid. I am also on medicare.",
     "expected": {
         "applicant_age": 65,
         "has_elderly_member": true,
@@ -198,7 +198,8 @@
         "utilities_monthly": 400,
         "has_disabled_member": true,
         "receives_medicaid": true,
-        "has_child_under_5": false
+        "has_child_under_5": false,
+        "has_medicare": true
     },
     "tags": ["rich", "elderly_in_home", "household_by_listing", "mortgage", "explicit_negation"]
   },
@@ -264,9 +265,10 @@
         "earned_monthly_income": 6250,
         "gross_monthly_income": 6250,
         "has_child_under_5": false,
-        "has_elderly_member": false
+        "has_elderly_member": false,
+        "household_size": 3
     },
-    "tags": ["utilities_sum", "child_age_boundary", "annual_income", "household_size_ambiguous"]
+    "tags": ["utilities_sum", "child_age_boundary", "annual_income", "household_by_listing"]
   },
   {
     "id": "c24",
@@ -309,6 +311,32 @@
         "receives_snap": true
     },
     "tags": ["household_size_ambiguous", "sparse"]
+  },
+    {
+    "id": "c28",
+    "text": "28 y/o mother of 2 with another on the way. Married. Living with one grandparent (65 y/o). We receive LaMOMS and my two kids are on LaCHIP.",
+    "expected": {
+        "applicant_age": 28,
+        "is_louisiana_resident": true,
+        "household_size": 5,
+        "has_elderly_member": true,
+        "receives_lamoms": true,
+        "receives_lachip": true,
+        "has_pregnant_member": true
+    },
+    "tags": ["household_by_listing", "benefits_imply_state"]
+  },
+    {
+    "id": "c29",
+    "text": "33 year old father of 2. Married. Receiving TANF and kids are on LaCHIP. Looking to see what other benefits we qualify for.",
+    "expected": {
+        "applicant_age": 33,
+        "is_louisiana_resident": true,
+        "household_size": 4,
+        "receives_lachip": true,
+        "receives_tanf": true
+    },
+    "tags": ["household_by_listing", "sparse", "benefits_imply_state"]
   }
 
 ]

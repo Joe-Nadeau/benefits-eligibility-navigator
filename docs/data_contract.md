@@ -21,7 +21,7 @@ Per-program feature subsets are in [`src/data/features.py`](../src/data/features
 
 7. `applicant_age` is the speaker’s age.
 
-8. A Louisiana city or parish counts as residency. A city that only might be in Louisiana doesn’t.
+8. A Louisiana city or parish counts as residency. A city that only might be in Louisiana doesn't. Receiving a Louisiana-only program (LaCHIP, LaMOMS) also counts as residency.
 
 9. Benefits: `receives_*` is true only for current receipt ("we get SNAP"), not for "applied" or "used to get."
 
